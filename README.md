@@ -35,7 +35,7 @@ Users can make posts to detail their wants and needs and what they have to offer
 
 ### [Matchmaking]
 
-App Connects Users after a match is found on the online board.
+App Connects Users after a match is found on the online board in a safee and secure way.
 
 [gif goes here]
 
@@ -45,11 +45,17 @@ Users build credibility with reviews and ratings on their profile, so ensure com
 
 [gif goes here]
 
-### [ADDITIONAL FEATURES GO HERE - ADD ALL FEATURES HERE IN THE FORMAT ABOVE; you will check these off and add gifs as you complete them]
-
 ### [Filtering and Searching]
 
 Users can filter and search for posts on the main dashboard. By tag or topic too. 
+
+### [Following Users]
+
+Users can follow other users to stay updated on their posts and activities.
+
+### [Automated Transactions]
+
+The state of each transaction (if a person has found someone for the service already, or if the item already loaned out) is updated automatically.
 
 ## Installation Instructions
 
