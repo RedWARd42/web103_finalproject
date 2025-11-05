@@ -9,6 +9,8 @@ Reference the Creating an Entity Relationship Diagram final project guide in the
 1. ⭐ Main Page: a list view of the posts 
 2. ⭐ Profile Page: a user can see their profile info and items they have lended
 3. ⭐ Borrowed Items Page: a user can see the items they are currently borrowing 
+4. Create Post Page: a user can post which item they can lend out
+
 
 ## Wireframe 1: Main Page 
 
