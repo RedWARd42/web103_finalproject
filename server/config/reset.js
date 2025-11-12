@@ -1,79 +1,131 @@
 import { pool } from './database.js'
 import './dotenv.js' 
+import { users, items, requests, follows, ratings } from './data.js'
 
 // Create ITEMS table 
-const createItemsTable = async () => {
-    const createTableQuery = `
-      DROP TABLE IF EXISTS items CASCADE; 
-  
-      CREATE TABLE items (
-        id SERIAL PRIMARY KEY,                     
-        item_name VARCHAR(100) NOT NULL,             
-        description TEXT,                          
-        category VARCHAR(50),                      
-        location VARCHAR(100),                    
-        rent_price NUMERIC(10,2),
-        rating NUMERIC(10,2),                  
-        available BOOLEAN DEFAULT TRUE,           
-        user_id INT REFERENCES users(id),          
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-      );
+const initializeDatabaseTables = async () => {
+  const createTableQuery = `
+    DROP TABLE IF EXISTS users CASCADE;
+    DROP TABLE IF EXISTS items CASCADE;
+    DROP TABLE IF EXISTS requests CASCADE;
+    DROP TABLE IF EXISTS follows CASCADE;
+    DROP TABLE IF EXISTS ratings CASCADE;
+
+    CREATE TABLE users (
+      id SERIAL PRIMARY KEY,
+      username VARCHAR(100) UNIQUE NOT NULL,
+      email VARCHAR(100) UNIQUE NOT NULL,
+      password_hash TEXT NOT NULL,
+      role VARCHAR(20) CHECK (role IN ('borrower', 'lender', 'both')) DEFAULT 'both',
+      rating NUMERIC(3,2),
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    );
+
+    CREATE TABLE items (
+      id SERIAL PRIMARY KEY,
+      title VARCHAR(100) NOT NULL,
+      description TEXT,
+      category VARCHAR(50),
+      location VARCHAR(100),
+      available BOOLEAN DEFAULT TRUE,
+      post_type VARCHAR(10) CHECK (post_type IN ('lend', 'borrow')) NOT NULL,
+      rent_price NUMERIC(10,2),
+      user_id INT REFERENCES users(id) ON DELETE CASCADE,
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    );
+
+    CREATE TABLE requests (
+      id SERIAL PRIMARY KEY,
+      item_id INT REFERENCES items(id) ON DELETE CASCADE,
+      borrower_id INT REFERENCES users(id) ON DELETE CASCADE,
+      status VARCHAR(20) CHECK (status IN ('pending', 'accepted', 'rejected')) DEFAULT 'pending',
+      message TEXT,
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    );
+
+
+    CREATE TABLE follows (
+      follower_id INT REFERENCES users(id) ON DELETE CASCADE,
+      following_id INT REFERENCES users(id) ON DELETE CASCADE,
+      PRIMARY KEY (follower_id, following_id)
+    );
+
+
+    CREATE TABLE ratings (
+      id SERIAL PRIMARY KEY,
+      rated_by INT REFERENCES users(id) ON DELETE CASCADE,
+      rated_user INT REFERENCES users(id) ON DELETE CASCADE,
+      score NUMERIC(3,2) CHECK (score >= 0 AND score <= 5),
+      review TEXT,
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    );
     `;
-  
-    try {
-      await pool.query(createTableQuery);
-      console.log('items table created successfully');
-    } catch (err) {
-      console.error('Error creating items table:', err);
-    }
-  };
-  
+
+  try {
+    const res = await pool.query(createTableQuery);
+    console.log("🎉Tables created successfully.");
+  } catch (error) {
+    console.error("⚠️ error creating tables", error);
+  }
+};
+
 
 // Populate items table with one sample data
-const seedItemsTable = async () => {
-    const seedQuery = `
-      INSERT INTO items (
-        item_name,
-        description,
-        category, 
-        location,
-        rent_price,
-        rating, 
-        available,
-        user_id
-      ) VALUES 
-      (
-        'Lawn Mower',
-        'Gas-powered mower in great condition. Perfect for medium lawns',
-        'Tools & Equipment',
-        'Detroit, MI',
-        00.00,
-        4.6,
-        TRUE,
-        1
-      );
-    `
-    try {
-      await pool.query(seedQuery)
-      console.log('items table seeded successfully')
-    } catch (err) {
-      console.error('Error seeding items table:', err)
+const seedDatabaseTables = async () => {
+  await initializeDatabaseTables();
+  console.log("🎉 Tables initialized successfully.");
+
+  try {
+
+    for (const user of users) {
+      const insertQuery = {
+        text: "INSERT INTO users (username, email, password_hash, role, rating, created_at) VALUES ($1, $2, $3, $4, $5, $6)",
+        values: [user.username, user.email, user.password_hash, user.role, user.rating, user.created_at],
+      };
+      await pool.query(insertQuery);
+      console.log(`✅ ${user.username} added successfully`);
     }
-  }
-
-
-
-const resetDatabase = async () => {
-    try {
-      console.log('Resetting database...')
-      await createItemsTable()
-      await seedItemsTable()
-      console.log('✅ Database reset complete')
-    } catch (err) {
-      console.error('❌ Database reset failed:', err)
-    } finally {
-      await pool.end()
+    
+    for (const item of items) {
+      const insertQuery = {
+        text: `INSERT INTO items (title, description, category, location, available, post_type, rent_price, user_id, created_at) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`,
+        values: [item.title, item.description, item.category, item.location, item.available, item.post_type, item.rent_price, item.user_id, item.created_at],
+      };
+      await pool.query(insertQuery);
+      console.log(`✅ ${item.title} added successfully`);
     }
+
+    for (const request of requests) {
+      const insertQuery = {
+        text: `INSERT INTO requests (item_id, borrower_id, status, message, created_at) VALUES ($1, $2, $3, $4, $5)`,
+        values: [request.item_id, request.borrower_id, request.status, request.message, request.created_at],
+      };
+      await pool.query(insertQuery);
+      console.log(`✅ Request for item ${request.item_id} added successfully`);
+    }
+
+    for (const follow of follows) {
+      const insertQuery = {
+        text: `INSERT INTO follows (follower_id, following_id) VALUES ($1, $2)`,
+        values: [follow.follower_id, follow.following_id],
+      };
+      await pool.query(insertQuery);
+      console.log(`✅ Follow from ${follow.follower_id} to ${follow.following_id} added successfully`);
+    }
+
+    for (const rating of ratings) {
+      const insertQuery = {
+        text: `INSERT INTO ratings (rated_by, rated_user, score, review, created_at) VALUES ($1, $2, $3, $4, $5)`,
+        values: [rating.rated_by, rating.rated_user, rating.score, rating.review, rating.created_at],
+      };
+      await pool.query(insertQuery);
+      console.log(`✅ Rating for user ${rating.rated_user} added successfully`);
+    }
+
+    console.log("🎉 Database seeded successfully.");
+  } catch (error) {
+    console.error("⚠️ Error seeding database", error);
   }
-  
-  resetDatabase()
+};
+
+seedDatabaseTables();
