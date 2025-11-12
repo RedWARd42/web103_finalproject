@@ -1,53 +1,63 @@
 import { pool } from './database.js'
 import './dotenv.js' 
 
-// Populate ITEMS table  with some sample data - NOT DONE
+// Create ITEMS table 
 const createItemsTable = async () => {
     const createTableQuery = `
-    DROP TABLE IF EXISTS items CASCADE; 
-
-    CREATE TABLE IF NOT EXISTS items (
-      id SERIAL PRIMARY KEY,
-      item_name VARCHAR(100) NOT NULL,
-      user_name VARCHAR(100) NOT NULL,
-      location VARCHAR(50) NOT NULL,
-      rating NUMERIC(10, 2) NOT NULL,
-      rent_price NUMERIC(10, 2) NOT NULL,
-      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-    );
-  `
-
-  try {
-    await pool.query(createTableQuery)
-    console.log('items table created successfully')
-  } catch (err) {
-    console.error('⚠️ Error creating items table:', err)
-  }
-}
+      DROP TABLE IF EXISTS items CASCADE; 
+  
+      CREATE TABLE items (
+        id SERIAL PRIMARY KEY,                     
+        item_name VARCHAR(100) NOT NULL,             
+        description TEXT,                          
+        category VARCHAR(50),                      
+        location VARCHAR(100),                    
+        rent_price NUMERIC(10,2),
+        rating NUMERIC(10,2),                  
+        available BOOLEAN DEFAULT TRUE,           
+        user_id INT REFERENCES users(id),          
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      );
+    `;
+  
+    try {
+      await pool.query(createTableQuery);
+      console.log('items table created successfully');
+    } catch (err) {
+      console.error('Error creating items table:', err);
+    }
+  };
+  
 
 // Populate items table with one sample data
 const seedItemsTable = async () => {
     const seedQuery = `
       INSERT INTO items (
         item_name,
-        user_name,
+        description,
+        category, 
         location,
-        rating,
         rent_price,
+        rating, 
+        available,
+        user_id
       ) VALUES 
       (
         'Lawn Mower',
-        'Jim',
+        'Gas-powered mower in great condition. Perfect for medium lawns',
+        'Tools & Equipment',
         'Detroit, MI',
+        00.00,
         4.6,
-        00.00
+        TRUE,
+        1
       );
     `
     try {
       await pool.query(seedQuery)
-      console.log('🌱 diy_delight table seeded successfully')
+      console.log('items table seeded successfully')
     } catch (err) {
-      console.error('⚠️ Error seeding diy_delight table:', err)
+      console.error('Error seeding items table:', err)
     }
   }
 
