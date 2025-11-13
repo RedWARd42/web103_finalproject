@@ -1,8 +1,8 @@
-import { pool } from './database.js'
-import './dotenv.js' 
-import { users, items, requests, follows, ratings } from './data.js'
+import { pool } from "./database.js";
+import "./dotenv.js";
+import { users, items, requests, follows, ratings } from "./data.js";
 
-// Create ITEMS table 
+// Create ITEMS table
 const initializeDatabaseTables = async () => {
   const createTableQuery = `
     DROP TABLE IF EXISTS users CASCADE;
@@ -14,10 +14,11 @@ const initializeDatabaseTables = async () => {
     CREATE TABLE users (
       id SERIAL PRIMARY KEY,
       username VARCHAR(100) UNIQUE NOT NULL,
-      email VARCHAR(100) UNIQUE NOT NULL,
-      password_hash TEXT NOT NULL,
+      githubid VARCHAR(100) UNIQUE NOT NULL,
+      avatarurl VARCHAR(100),
+      accesstoken VARCHAR(100) UNIQUE NOT NULL,
       role VARCHAR(20) CHECK (role IN ('borrower', 'lender', 'both')) DEFAULT 'both',
-      rating NUMERIC(3,2),
+      rating NUMERIC(3,2) DEFAULT 0,
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     );
 
@@ -69,27 +70,44 @@ const initializeDatabaseTables = async () => {
   }
 };
 
-
 // Populate items table with one sample data
 const seedDatabaseTables = async () => {
   await initializeDatabaseTables();
   console.log("🎉 Tables initialized successfully.");
 
   try {
-
+    // TODO: change
     for (const user of users) {
       const insertQuery = {
-        text: "INSERT INTO users (username, email, password_hash, role, rating, created_at) VALUES ($1, $2, $3, $4, $5, $6)",
-        values: [user.username, user.email, user.password_hash, user.role, user.rating, user.created_at],
+        text: `INSERT INTO users (username, githubid, avatarurl, accesstoken, role, rating, created_at) VALUES($1, $2, $3, $4, $5, $6, $7)`,
+        values: [
+          user.username,
+          user.githubid,
+          user.avatarurl,
+          user.accesstoken,
+          user.role,
+          user.rating,
+          user.created_at,
+        ],
       };
       await pool.query(insertQuery);
       console.log(`✅ ${user.username} added successfully`);
     }
-    
+
     for (const item of items) {
       const insertQuery = {
         text: `INSERT INTO items (title, description, category, location, available, post_type, rent_price, user_id, created_at) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`,
-        values: [item.title, item.description, item.category, item.location, item.available, item.post_type, item.rent_price, item.user_id, item.created_at],
+        values: [
+          item.title,
+          item.description,
+          item.category,
+          item.location,
+          item.available,
+          item.post_type,
+          item.rent_price,
+          item.user_id,
+          item.created_at,
+        ],
       };
       await pool.query(insertQuery);
       console.log(`✅ ${item.title} added successfully`);
@@ -98,7 +116,13 @@ const seedDatabaseTables = async () => {
     for (const request of requests) {
       const insertQuery = {
         text: `INSERT INTO requests (item_id, borrower_id, status, message, created_at) VALUES ($1, $2, $3, $4, $5)`,
-        values: [request.item_id, request.borrower_id, request.status, request.message, request.created_at],
+        values: [
+          request.item_id,
+          request.borrower_id,
+          request.status,
+          request.message,
+          request.created_at,
+        ],
       };
       await pool.query(insertQuery);
       console.log(`✅ Request for item ${request.item_id} added successfully`);
@@ -110,13 +134,21 @@ const seedDatabaseTables = async () => {
         values: [follow.follower_id, follow.following_id],
       };
       await pool.query(insertQuery);
-      console.log(`✅ Follow from ${follow.follower_id} to ${follow.following_id} added successfully`);
+      console.log(
+        `✅ Follow from ${follow.follower_id} to ${follow.following_id} added successfully`
+      );
     }
 
     for (const rating of ratings) {
       const insertQuery = {
         text: `INSERT INTO ratings (rated_by, rated_user, score, review, created_at) VALUES ($1, $2, $3, $4, $5)`,
-        values: [rating.rated_by, rating.rated_user, rating.score, rating.review, rating.created_at],
+        values: [
+          rating.rated_by,
+          rating.rated_user,
+          rating.score,
+          rating.review,
+          rating.created_at,
+        ],
       };
       await pool.query(insertQuery);
       console.log(`✅ Rating for user ${rating.rated_user} added successfully`);

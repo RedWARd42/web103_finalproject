@@ -2,8 +2,9 @@ export const users = [
   {
     id: 1,
     username: "alex_borrower",
-    email: "alex@example.com",
-    password_hash: "$2b$10$examplehashalex",
+    githubid: "github_alex",
+    avatarurl: "https://avatars.githubusercontent.com/u/1?v=4",
+    accesstoken: "token_alex",
     role: "borrower",
     rating: 4.75,
     created_at: "2025-01-15T10:20:00Z"
@@ -11,8 +12,9 @@ export const users = [
   {
     id: 2,
     username: "jordan_lends",
-    email: "jordan@example.com",
-    password_hash: "$2b$10$examplehashjordan",
+    githubid: "github_jordan",
+    avatarurl: "https://avatars.githubusercontent.com/u/2?v=4",
+    accesstoken: "token_jordan",
     role: "lender",
     rating: 4.92,
     created_at: "2025-01-20T14:33:00Z"
@@ -20,8 +22,9 @@ export const users = [
   {
     id: 3,
     username: "casey_both",
-    email: "casey@example.com",
-    password_hash: "$2b$10$examplehashcasey",
+    githubid: "github_casey",
+    avatarurl: "https://avatars.githubusercontent.com/u/3?v=4",
+    accesstoken: "token_casey",
     role: "both",
     rating: 4.60,
     created_at: "2025-02-01T09:00:00Z"
@@ -29,8 +32,9 @@ export const users = [
   {
     id: 4,
     username: "sam_gadgets",
-    email: "sam@example.com",
-    password_hash: "$2b$10$examplehashsam",
+    githubid: "github_sam",
+    avatarurl: "https://avatars.githubusercontent.com/u/4?v=4",
+    accesstoken: "token_sam",
     role: "lender",
     rating: 4.30,
     created_at: "2025-03-05T12:10:00Z"
@@ -38,8 +42,9 @@ export const users = [
   {
     id: 5,
     username: "taylor_borrower",
-    email: "taylor@example.com",
-    password_hash: "$2b$10$examplehashtaylor",
+    githubid: "github_taylor",
+    avatarurl: "https://avatars.githubusercontent.com/u/5?v=4",
+    accesstoken: "token_taylor",
     role: "borrower",
     rating: 4.85,
     created_at: "2025-03-10T16:45:00Z"
