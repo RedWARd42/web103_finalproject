@@ -30,7 +30,7 @@ We had a small issue in setting up the milestone but it was resolved quickly.
 
 ### Did you finish all of your tasks in your sprint plan for this week? If you did not finish all of the planned tasks, how would you prioritize the remaining tasks on your list?
 
-Yes, we were able to finish the tasks in our plan this week. We didn't complete any features from the read me because we were just focusing on setting up the database and the backend of the project for this week. 
+Yes, we were able to finish the tasks in our plan this week. We didn't complete any features from the readME because we were just focusing on setting up the database and the backend of the project for this week. 
 
 ### Which features and user stories would you consider “at risk”? How will you change your plan if those items remain “at risk”?
 

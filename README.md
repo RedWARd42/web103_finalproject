@@ -59,4 +59,7 @@ The state of each transaction (if a person has found someone for the service alr
 
 ## Installation Instructions
 
-[instructions go here]
+clone repo
+cd server 
+npm i
+npm start
