@@ -29,7 +29,7 @@ const createItemsTable = async () => {
   };
   
 
-// Populate items table with one sample data
+// Populate ITEMS table with one sample data
 const seedItemsTable = async () => {
     const seedQuery = `
       INSERT INTO items (
