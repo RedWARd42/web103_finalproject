@@ -3,6 +3,7 @@ import express from 'express'
 import passport from 'passport'
 import session from 'express-session'
 import { GitHub } from './config/auth.js'
+import cors from 'cors'
 
 dotenv.config()
 

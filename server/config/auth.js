@@ -1,3 +1,7 @@
+
+import { Strategy as GitHubStrategy } from 'passport-github2'
+import { pool } from '../config/database.js'
+
 const options = {
   clientID: process.env.GITHUB_CLIENT_ID,
   clientSecret: process.env.GITHUB_CLIENT_SECRET,
