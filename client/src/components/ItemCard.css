@@ -1,51 +1,57 @@
-.item-card {
+/* .item-card {
+    width: 240px;             
+    height: 360px;             
     border: 1px solid #d1d5db;
     border-radius: 8px;
-    padding: 14px;
-    display: flex;
-    flex-direction: column;
     background: #ffffff;
     font-family: sans-serif;
-    min-height: 360px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;         
   }
   
-  /* --- TOP IMAGE AREA (Square) --- */
   .image-placeholder {
     width: 100%;
-    aspect-ratio: 3 / 2;  /* <-- Makes it perfectly square */
+    height: 200px;             
     background: #e5e7eb;
-    border-radius: 6px;
-    margin-bottom: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #6b7280;
-    font-size: 14px;
+    overflow: hidden;          
   }
   
-
+  .image-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;      
+  }
+  
+  .item-info {
+    padding: 10px 12px;
+    flex-grow: 1;
+  }
+  
   .item-info h3 {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
-    margin: 0 0 10px 0;
+    margin: 0 0 6px 0;
   }
   
   .item-info p {
     font-size: 14px;
     color: #374151;
-    margin: 3px 0;
+    margin: 2px 0;
   }
   
-
   .card-actions {
-    margin-top: auto;
     display: flex;
     gap: 8px;
+    padding: 10px 12px 12px;
   }
   
   .card-actions button {
     flex: 1;
-    padding: 9px 0;
+    padding: 8px;
     border: 1px solid #6b7280;
     background: #ffffff;
     border-radius: 6px;
@@ -55,5 +61,75 @@
   
   .card-actions button:hover {
     background: #f3f4f6;
+  }
+  */
+
+  .item-card {
+    background: white;
+    border-radius: 12px;
+    padding: 14px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.12);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.15s ease;
+  }
+  
+  .item-card:hover {
+    transform: translateY(-4px);
+  }
+  
+  /* ------- IMAGE ------- */
+  .image-placeholder {
+    width: 100%;
+    height: 160px;
+    background: #f2f2f2;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #666;
+    overflow: hidden;
+  }
+  
+  .image-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  /* ------- ITEM INFO ------- */
+  .item-info h3 {
+    margin: 0 0 6px 0;
+    font-size: 20px;
+  }
+  
+  .item-info p {
+    margin: 4px 0;
+    color: #555;
+  }
+  
+  /* ------- ACTION BUTTONS ------- */
+  .card-actions {
+    margin-top: 14px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .card-actions button {
+    flex: 1;
+    margin: 0 4px;
+    padding: 8px 10px;
+    border: none;
+    border-radius: 8px;
+    background: #00809D;
+    color: white;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+  
+  .card-actions button:hover {
+    background: #1565c0;
   }
   

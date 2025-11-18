@@ -56,6 +56,7 @@ export const items = [
     available: true,
     post_type: "lend",
     rent_price: 10.00,
+    image_url:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMbYBXmmbYtWGncm0BCeHRr1_VYtN8ooHimA&s",
     user_id: 2, // jordan_lends
     created_at: "2025-03-12T09:15:00Z"
   },
@@ -68,6 +69,7 @@ export const items = [
     available: false,
     post_type: "lend",
     rent_price: 25.00,
+    image_url:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkjToomlS_Gbb6iwV_xMCAAEOvViPeQrtjnA&s",
     user_id: 4, // sam_gadgets
     created_at: "2025-03-18T10:00:00Z"
   },
@@ -80,6 +82,7 @@ export const items = [
     available: true,
     post_type: "lend",
     rent_price: 35.00,
+    image_url:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLBkx2lxvDI8LqU7rRZ1WCPcdY6rypSq0p3w&s",
     user_id: 3, // casey_both
     created_at: "2025-04-01T08:00:00Z"
   },
@@ -92,6 +95,7 @@ export const items = [
     available: true,
     post_type: "lend",
     rent_price: 15.00,
+    image_url:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkrq3zfCQFI-3-JHEt-LBcMUm_cJeNMa-2iQ&s",
     user_id: 4,
     created_at: "2025-04-02T11:00:00Z"
   },
@@ -104,6 +108,7 @@ export const items = [
     available: true,
     post_type: "lend",
     rent_price: 12.00,
+    image_url:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7ikDfAJPRbYZhqVqdpJHW1nFEpxwcsR3W-Q&s",
     user_id: 2,
     created_at: "2025-04-10T13:45:00Z"
   },
@@ -116,6 +121,7 @@ export const items = [
     available: true,
     post_type: "borrow",
     rent_price: null,
+    image_url: "https://cdn.thewirecutter.com/wp-content/media/2020/09/pressurewasher2020-2048-0698.jpg?auto=webp&quality=75&width=1024",
     user_id: 1,
     created_at: "2025-04-15T08:30:00Z"
   }
