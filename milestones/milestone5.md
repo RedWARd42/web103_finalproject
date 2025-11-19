@@ -80,8 +80,8 @@ Complete the checklist below detailing each baseline, custom, and stretch featur
 
 ## Final Demo GIF
 
-🔗 [Here's a GIF walkthrough of the final project](👉🏾👉🏾👉🏾 your link here)
-<img src='https://i.imgur.com/qRYALac.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+🔗 [Here's a GIF walkthrough of the final project]
+<img src='https://github.com/RedWARd42/web103_finalproject/blob/main/walkthrough.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 ## Reflection
 
