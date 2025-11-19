@@ -95,7 +95,9 @@ function ItemDetails() {
                 <p><strong>Category:</strong> {item.category}</p>
                 <p><strong>Location:</strong> {item.location}</p>
                 <p><strong>Price:</strong> ${item.rent_price}</p>
-                <p><strong>Owner:</strong> {item.user_id}</p>
+                {/* <p><strong>Owner:</strong> {item.user_id}</p> */}
+                <strong>Owner:</strong> @{item.owner_username}
+
             </div>
 
             <hr />
