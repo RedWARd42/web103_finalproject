@@ -60,6 +60,5 @@ The state of each transaction (if a person has found someone for the service alr
 ## Installation Instructions
 
 clone repo
-cd server 
 npm i
-npm start
+npm run dev
