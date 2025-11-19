@@ -75,6 +75,7 @@ import ReadItems from "./pages/ReadItems";
 import UserProfile from "./pages/UserProfile";
 import CreateRequest from "./pages/CreateRequest";
 import EditItem from "./pages/EditItem";
+import CreateItem from "./pages/CreateItem";
 import ItemDetails from "./pages/ItemDetails";
 import "./App.css";
 
@@ -87,6 +88,7 @@ function AppRoutes() {
     { path: "/user/:id", element: <UserProfile /> },
     { path: "/request/new/:itemId", element: <CreateRequest /> },
     { path: "/items/:id/edit", element: <EditItem /> },
+    { path: "/items/new", element: <CreateItem /> },
     { path: "/items/:id", element: <ItemDetails /> },
     // Catch-all 404
     { path: "*", element: <h2 style={{ padding: 20 }}>Page Not Found</h2> },
