@@ -1,0 +1,150 @@
+/* Match global style */
+.item-details,
+.request-form,
+.request-card {
+  font-family: Arial, sans-serif;
+}
+
+/* ------- ITEM DETAILS CARD ------- */
+.item-details {
+  max-width: 800px;
+  margin: 25px auto;
+  padding: 20px;
+  background: white;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  text-align: center;
+}
+
+.item-details img {
+  width: 260px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.item-details h1 {
+  font-size: 28px;
+  margin-bottom: 10px;
+  color: #00809D;
+}
+
+.item-details p {
+  font-size: 16px;
+  margin: 6px 0;
+}
+
+/* ------- REQUEST FORM ------- */
+.request-form {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 18px;
+  background: #f5f9fa;
+  border-radius: 10px;
+  border: 1px solid #00809D;
+}
+
+.request-form textarea {
+  width: 100%;
+  border: 1px solid #00809D;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 15px;
+  margin-bottom: 12px;
+  resize: none;
+}
+
+.request-form button {
+  padding: 10px 16px;
+  background: #00809D;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  border: none;
+  transition: 0.2s;
+}
+
+.request-form button:hover {
+  background: #00748c;
+}
+
+/* ------- SECTION HEADER ------- */
+h2 {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  color: #00809D;
+  margin-top: 40px;
+}
+
+/* ------- REQUEST CARD ------- */
+.request-card {
+  background: white;
+  max-width: 800px;
+  margin: 15px auto;
+  padding: 18px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+}
+
+.request-card p {
+  margin: 6px 0;
+  font-size: 15px;
+}
+
+/* Accept / Reject Buttons */
+.request-card button {
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  border: none;
+  font-size: 14px;
+  margin-right: 8px;
+  transition: 0.2s;
+}
+
+.request-card button:first-child {
+  background: #28a745; /* Accept */
+  color: white;
+}
+
+.request-card button:first-child:hover {
+  background: #1f7d37;
+}
+
+.request-card button:last-child {
+  background: #dc3545; /* Reject */
+  color: white;
+}
+
+.request-card button:last-child:hover {
+  background: #b02d38;
+}
+
+  button {
+    padding: 8px 14px;
+    background: #00809D; /* Same accent blue-teal */
+    color: white;
+    border-radius: 8px; /* Matches card buttons */
+    font-size: 15px;
+    font-weight: bold;
+    text-decoration: none;
+  
+    box-shadow: 0px 2px 5px rgba(0,0,0,0.15);
+    transition: all 0.2s ease;
+  }
+  
+  button:hover {
+    background: #1565c0; /* Same hover color as buttons */
+    transform: translateY(-2px);
+  }
+
+/* Responsive */
+@media (max-width: 650px) {
+  .item-details,
+  .request-form,
+  .request-card {
+    width: 92%;
+    padding: 15px;
+  }
+}

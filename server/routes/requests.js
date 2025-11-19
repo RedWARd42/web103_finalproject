@@ -21,4 +21,8 @@ router.put('/:id', RequestsController.updateRequest);
 // Delete a request
 router.delete('/:id', RequestsController.deleteRequest);
 
+router.get("/items/:id/requests", requestsController.getRequestsByItem);
+router.post("/requests", requestsController.createRequest);
+router.put("/requests/:id", requestsController.updateRequestStatus);
+
 export default router;

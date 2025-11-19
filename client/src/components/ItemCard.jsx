@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import FollowButton from "./FollowButton";
 import "./ItemCard.css";
+import ItemDetails from "../pages/ItemDetails";
+import { useNavigate } from "react-router-dom";
 
 const ItemCard = ({ item, onFollowChange, refresh }) => {
   const [ownerName, setOwnerName] = useState("Loading...");
@@ -20,7 +22,7 @@ const ItemCard = ({ item, onFollowChange, refresh }) => {
 
     fetchUsername();
   }, [item.user_id]);
-
+  const navigate = useNavigate();
   return (
     <div className="item-card">
       <div className="image-placeholder">
@@ -51,7 +53,7 @@ const ItemCard = ({ item, onFollowChange, refresh }) => {
 
       <div className="card-actions">
         <Link to={`/request/new/${item.id}`} className="request-btn">Request</Link>
-        <button>Details</button>
+        <button>Details</button><button onClick={() => navigate(`/items/${item.id}`)} >Details</button>
       </div>
     </div>
   );
