@@ -51,11 +51,11 @@ app.use('/api/requests', requestsRouter);
 app.use("/api", requestsRoutes);
 
 // Serve React build in production
-// if (process.env.NODE_ENV === 'production') {
-//   app.get('*', (req, res) => {
-//     res.sendFile(path.join(__dirname, 'public', 'index.html'))
-//   })
-// }
+if (process.env.NODE_ENV === 'production') {
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'))
+  })
+}
 
 app.listen(PORT, () => {
   console.log(`🚀 Server listening at http://localhost:${PORT}`)
