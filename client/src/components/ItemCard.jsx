@@ -1,7 +1,10 @@
 import React from "react";
 import "./ItemCard.css";
+import ItemDetails from "../pages/ItemDetails";
+import { useNavigate } from "react-router-dom";
 
 const ItemCard = ({ item }) => {
+  const navigate = useNavigate();
   return (
     <div className="item-card">
       {/* <div className="image-placeholder">
@@ -31,7 +34,7 @@ const ItemCard = ({ item }) => {
 
       <div className="card-actions">
         <button>Request</button>
-        <button>Details</button>
+        <button onClick={() => navigate(`/items/${item.id}`)} >Details</button>
       </div>
     </div>
   );

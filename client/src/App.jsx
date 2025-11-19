@@ -73,6 +73,7 @@ import { BrowserRouter as Router, Link, useRoutes } from "react-router-dom";
 
 import ReadItems from "./pages/ReadItems";
 import UserProfile from "./pages/UserProfile";
+import ItemDetails from "./pages/ItemDetails";
 
 import "./App.css";
 
@@ -83,7 +84,7 @@ function AppRoutes() {
   return useRoutes([
     { path: "/", element: <ReadItems /> },
     { path: "/user/:id", element: <UserProfile /> },
-
+    { path: "/items/:id", element: <ItemDetails /> },
     // Catch-all 404
     { path: "*", element: <h2 style={{ padding: 20 }}>Page Not Found</h2> },
   ]);
