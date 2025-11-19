@@ -76,12 +76,15 @@ const createItem = async (req, res) => {
     description,
     category,
     location,
-    available,
+    status,     // Status field to use directly
     post_type,
     rent_price,
     image_url,
     user_id
   } = req.body
+
+  // Default to 'available' if no status is provided
+  const itemStatus = status || 'available';
 
   try {
     const result = await pool.query(
@@ -90,13 +93,13 @@ const createItem = async (req, res) => {
         description,
         category,
         location,
-        available,
         post_type,
         rent_price,
         image_url,
-        user_id
+        user_id,
+        status
       ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *`,
-      [title, description, category, location, available, post_type, rent_price, image_url, user_id]
+      [title, description, category, location, post_type, rent_price, image_url, user_id, itemStatus]
     )
     res.status(201).json(result.rows[0])
   } catch (error) {
@@ -112,7 +115,7 @@ const updateItem = async (req, res) => {
     description,
     category,
     location,
-    available,
+    status,
     post_type,
     rent_price,
     image_url
@@ -125,13 +128,13 @@ const updateItem = async (req, res) => {
         description = $2,
         category = $3,
         location = $4,
-        available = $5,
+        status = $5,
         post_type = $6,
         rent_price = $7,
         image_url = $8
       WHERE id = $9
       RETURNING *`,
-      [title, description, category, location, available, post_type, rent_price, image_url, id]
+      [title, description, category, location, status, post_type, rent_price, image_url, id]
     )
     if (result.rows.length === 0) {
       return res.status(404).json({ error: 'Item not found' })

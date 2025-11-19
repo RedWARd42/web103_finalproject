@@ -20,6 +20,7 @@ import dotenv from 'dotenv'
 import itemsRouter from './routes/items.js'
 import usersRouter from './routes/users.js';
 import followsRouter from './routes/follows.js';
+import requestsRouter from './routes/requests.js';
 
 
 dotenv.config()
@@ -46,6 +47,7 @@ if (process.env.NODE_ENV === 'development') {
 app.use('/api/items', itemsRouter)
 app.use('/api/users', usersRouter);
 app.use('/api/follows', followsRouter);
+app.use('/api/requests', requestsRouter);
 
 
 // Serve React build in production
@@ -54,8 +56,6 @@ if (process.env.NODE_ENV === 'production') {
     res.sendFile(path.join(__dirname, 'public', 'index.html'))
   })
 }
-
-
 
 app.listen(PORT, () => {
   console.log(`🚀 Server listening at http://localhost:${PORT}`)

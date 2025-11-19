@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import FollowButton from "./FollowButton";
 import "./ItemCard.css";
 
@@ -49,7 +50,7 @@ const ItemCard = ({ item, onFollowChange, refresh }) => {
       </div>
 
       <div className="card-actions">
-        <button>Request</button>
+        <Link to={`/request/new/${item.id}`} className="request-btn">Request</Link>
         <button>Details</button>
       </div>
     </div>

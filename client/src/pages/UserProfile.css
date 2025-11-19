@@ -160,3 +160,94 @@
     background: #005fcc;
   }
   
+  /* Outgoing Requests Section */
+  .outgoing-requests-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+    margin-bottom: 10px;
+  }
+  
+  .outgoing-requests-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .request-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    background: #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  .request-row:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+  
+  .request-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .request-item-title {
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+  
+  .request-owner {
+    font-size: 0.9rem;
+    color: #666;
+  }
+  
+  .request-status {
+    flex: 0.6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: capitalize;
+    text-align: center;
+  }
+  
+  .request-status.pending {
+    background-color: #fff6e6;
+    color: #dd6b20;
+    border: 1px solid #dd6b20;
+  }
+  
+  .request-status.accepted {
+    background-color: #e6f9f0;
+    color: #2f855a;
+    border: 1px solid #2f855a;
+  }
+  
+  .request-status.rejected {
+    background-color: #fde2e2;
+    color: #c53030;
+    border: 1px solid #c53030;
+  }
+  
+  .request-date {
+    flex: 0.5;
+    text-align: right;
+    font-size: 0.85rem;
+    color: #888;
+  }
+  
+  .no-requests {
+    font-style: italic;
+    color: #666;
+  }
+  
