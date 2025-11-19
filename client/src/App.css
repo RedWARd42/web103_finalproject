@@ -1,0 +1,78 @@
+/* -------- GLOBAL HEADER -------- */
+
+* {
+    box-sizing: border-box;
+  }
+.app-header {
+    width: 100%;
+    background: white; /* Matches card background */
+    padding: 14px 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  
+    border-radius: 0 0 12px 12px; /* Smooth rounded bottom */
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12); /* Same card shadow */
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  
+    font-family: Arial, sans-serif;
+  }
+  
+  /* -------- LOGO TEXT -------- */
+  .app-logo {
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+    color: #00809D; /* Matches button main color */
+  }
+  
+  /* -------- PROFILE BUTTON -------- */
+  .profile-btn {
+    padding: 8px 14px;
+    background: #00809D; /* Same accent blue-teal */
+    color: white;
+    border-radius: 8px; /* Matches card buttons */
+    font-size: 15px;
+    font-weight: bold;
+    text-decoration: none;
+  
+    box-shadow: 0px 2px 5px rgba(0,0,0,0.15);
+    transition: all 0.2s ease;
+  }
+  
+  .profile-btn:hover {
+    background: #1565c0; /* Same hover color as buttons */
+    transform: translateY(-2px);
+  }
+  
+  .browse-btn {
+    padding: 8px 14px;
+    background: #00809D; /* Same accent blue-teal */
+    color: white;
+    border-radius: 8px; /* Matches card buttons */
+    font-size: 15px;
+    font-weight: bold;
+    text-decoration: none;
+  
+    box-shadow: 0px 2px 5px rgba(0,0,0,0.15);
+    transition: all 0.2s ease;
+  }
+  
+  .browse-btn:hover {
+    background: #1565c0; /* Same hover color as buttons */
+    transform: translateY(-2px);
+  }
+  
+  /* -------- OPTIONAL GLOBAL BODY STYLING -------- */
+  body {
+    background: #f2f2f2; /* Same gray as your image placeholder */
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  .header-buttons {
+    display: flex;
+    gap: 10px; /* space between buttons */
+  }

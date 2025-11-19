@@ -26,7 +26,6 @@ const ItemCard = ({ item }) => {
 
       <div className="item-info">
         <h3>{item.title}</h3>
-        <p>How many: {item.quantity || 1}</p>
         <p>{item.location}</p>
       </div>
 

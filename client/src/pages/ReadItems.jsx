@@ -20,6 +20,8 @@ const ReadItems = () => {
       }
     };
 
+    
+
     fetchItems();
   }, [page, search]);
 
@@ -28,7 +30,7 @@ const ReadItems = () => {
       
       {/* ---------- TOP BAR ---------- */}
       <div className="top-bar">
-        <h1 className="app-title">BorrowBuddy</h1>
+        {/* <h1 className="app-title">BorrowBuddy</h1> */}
 
         <input
           className="search-bar"

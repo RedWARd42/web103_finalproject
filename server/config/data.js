@@ -19,7 +19,7 @@ export const users = [
   },
   {
     id: 3,
-    username: "casey_both",
+    username: "casey1",
     email: "casey@example.com",
     password_hash: "$2b$10$examplehashcasey",
     role: "both",
@@ -37,7 +37,7 @@ export const users = [
   },
   {
     id: 5,
-    username: "taylor_borrower",
+    username: "taylor_b",
     email: "taylor@example.com",
     password_hash: "$2b$10$examplehashtaylor",
     role: "borrower",
