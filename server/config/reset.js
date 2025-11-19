@@ -21,7 +21,6 @@ const initializeDatabaseTables = async () => {
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     );
 
-
     CREATE TABLE items (
       id SERIAL PRIMARY KEY,
       title VARCHAR(100) NOT NULL,
@@ -89,14 +88,6 @@ const seedDatabaseTables = async () => {
       console.log(`✅ ${user.username} added successfully`);
     }
     
-    // for (const item of items) {
-    //   const insertQuery = {
-    //     text: `INSERT INTO items (title, description, category, location, available, post_type, rent_price, image_url, user_id, created_at) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`,
-    //     values: [item.title, item.description, item.category, item.location, item.available, item.post_type, item.rent_price, item.image_url, item.user_id, item.created_at],
-    //   };
-    //   await pool.query(insertQuery);
-    //   console.log(`✅ ${item.title} added successfully`);
-    // }
     for (const item of items) {
       const insertQuery = {
         text: `INSERT INTO items (title, description, category, location, post_type, rent_price, image_url, user_id, status, created_at) 

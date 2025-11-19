@@ -1,0 +1,74 @@
+.create-request-container {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+}
+
+.create-request-container h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.request-item-preview {
+  background: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.request-item-preview h3 {
+  margin-top: 0;
+  color: #00809D;
+}
+
+.request-form .form-group {
+  margin-bottom: 15px;
+}
+
+.request-form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.request-form textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-family: inherit;
+  resize: vertical;
+}
+
+.form-actions {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.submit-request-btn {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.submit-request-btn:hover {
+  background: #218838;
+}
+
+.cancel-btn {
+  background: #6c757d;
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  display: inline-block;
+  text-align: center;
+}
+
+.cancel-btn:hover {
+  background: #545b62;
+}

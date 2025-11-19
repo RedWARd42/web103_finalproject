@@ -35,7 +35,7 @@ Users can make posts to detail their wants and needs and what they have to offer
 
 ### [Matchmaking]
 
-App Connects Users after a match is found on the online board in a safee and secure way.
+App Connects Users after a match is found on the online board in a safe and secure way.
 
 [gif goes here]
 
@@ -47,11 +47,11 @@ Users build credibility with reviews and ratings on their profile, so ensure com
 
 ### [Filtering and Searching]
 
-Users can filter and search for posts on the main dashboard. By tag or topic too. 
+✅ Users can filter and search for posts on the main dashboard. By tag or topic too. 
 
 ### [Following Users]
 
-Users can follow other users to stay updated on their posts and activities.
+✅ Users can follow other users to stay updated on their posts and activities.
 
 ### [Automated Transactions]
 
