@@ -48,10 +48,13 @@ Users build credibility with reviews and ratings on their profile, so ensure com
 ### [Filtering and Searching]
 
 ✅ Users can filter and search for posts on the main dashboard. By tag or topic too. 
+<img src='https://i.imgur.com/ZHjRwBC.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 ### [Following Users]
 
 ✅ Users can follow other users to stay updated on their posts and activities.
+
+<img src='https://i.imgur.com/kH4S1ya.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 ### [Automated Transactions]
 
