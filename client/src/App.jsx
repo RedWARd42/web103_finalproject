@@ -76,7 +76,6 @@ import UserProfile from "./pages/UserProfile";
 import CreateRequest from "./pages/CreateRequest";
 import EditItem from "./pages/EditItem";
 import ItemDetails from "./pages/ItemDetails";
-
 import "./App.css";
 
 // TEMPORARY: Replace with real logged-in ID when you add auth
