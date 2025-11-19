@@ -104,6 +104,7 @@ const UserProfile = () => {
       </div>
 
       {/* Selected User Info Card */}
+      <h3>Profile</h3>
       {selectedUser && (
         <div style={{
           padding: '20px',
@@ -119,7 +120,7 @@ const UserProfile = () => {
       )}
 
       {/* Items List */}
-      <h3>Items Lent by {selectedUser?.username}</h3>
+      <h3>Items Lending</h3>
       {loading ? (
         <p>Loading items...</p>
       ) : (
