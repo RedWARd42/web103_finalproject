@@ -5,6 +5,7 @@ import './UserProfile.css';
 
 const UserProfile = () => {
   const navigate = useNavigate();
+
   const [users, setUsers] = useState([]);
   const [selectedUser, setSelectedUser] = useState(null);
   const [items, setItems] = useState([]);
@@ -39,7 +40,6 @@ const UserProfile = () => {
   const fetchOutgoingRequests = async () => {
     try {
       setRequestsLoading(true);
-      // Using hard-coded current user ID as in other components
       const CURRENT_USER_ID = 1;
       const res = await fetch(`/api/requests/borrower/${CURRENT_USER_ID}`);
       const data = await res.json();
@@ -58,7 +58,6 @@ const UserProfile = () => {
       const res = await fetch(`/api/items/${itemId}`, { method: 'DELETE' });
       if (res.ok) {
         fetchItems(selectedUser.id);
-        // Also refresh outgoing requests since they might be related
         fetchOutgoingRequests();
       }
     } catch (error) {
@@ -70,9 +69,12 @@ const UserProfile = () => {
     navigate(`/items/${item.id}/edit`);
   };
 
+  const handleAddItem = () => {
+    navigate('/items/new');
+  };
+
   useEffect(() => {
     fetchUsers();
-    // Fetch outgoing requests for the current user (hard-coded as 1)
     fetchOutgoingRequests();
   }, []);
 
@@ -107,75 +109,74 @@ const UserProfile = () => {
 
       {/* Follow Section */}
       {selectedUser && (
-        <FollowSection 
-          userId={selectedUser.id} 
-          currentUserId={1} // Using the hardcoded LOGGED_IN_USER_ID from App.jsx
+        <FollowSection
+          userId={selectedUser.id}
+          currentUserId={1}
         />
       )}
 
       {/* Items List Header */}
-        <div className="items-header">
+      <div className="items-header">
         <h3>Items Lending</h3>
-
-        <button className="add-item-btn">
-            + Add Item
+        <button className="add-item-btn" onClick={handleAddItem}>
+          + Add Item
         </button>
-        </div>
+      </div>
 
-        {loading ? (
+      {loading ? (
         <p className="loading">Loading items...</p>
-        ) : items.length === 0 ? (
+      ) : items.length === 0 ? (
         <p className="no-items">No items found.</p>
-        ) : (
+      ) : (
         <div className="items-list">
-            {items.map((item) => (
+          {items.map((item) => (
             <div key={item.id} className="item-row">
-                <span className="item-title">{item.title}</span>
-                <span className={`item-status ${item.status.toLowerCase()}`}>
+              <span className="item-title">{item.title}</span>
+              <span className={`item-status ${item.status.toLowerCase()}`}>
                 {item.status}
-                </span>
-                <div className="item-actions">
+              </span>
+              <div className="item-actions">
                 <button onClick={() => handleEdit(item)}>Edit</button>
                 <button className="delete-btn" onClick={() => handleDelete(item.id)}>
-                    Delete
+                  Delete
                 </button>
-                </div>
+              </div>
             </div>
-            ))}
+          ))}
         </div>
-        )}
+      )}
 
       {/* Outgoing Requests Section */}
-        <div className="outgoing-requests-header">
+      <div className="outgoing-requests-header">
         <h3>Requests Made</h3>
-        </div>
+      </div>
 
-        {requestsLoading ? (
+      {requestsLoading ? (
         <p className="loading">Loading requests...</p>
-        ) : outgoingRequests.length === 0 ? (
+      ) : outgoingRequests.length === 0 ? (
         <p className="no-requests">No outgoing requests found.</p>
-        ) : (
+      ) : (
         <div className="outgoing-requests-list">
-            {outgoingRequests.map((request) => (
+          {outgoingRequests.map((request) => (
             <div key={request.id} className="request-row">
-                <div className="request-info">
+              <div className="request-info">
                 <span className="request-item-title">{request.item_title}</span>
                 <span className="request-owner">to @{request.item_owner}</span>
-                </div>
-                <span className={`request-status ${request.status.toLowerCase()}`}>
+              </div>
+              <span className={`request-status ${request.status.toLowerCase()}`}>
                 {request.status}
-                </span>
-                <div className="request-date">
-                {request.created_at ? new Date(request.created_at).toLocaleDateString() : 'N/A'}
-                </div>
+              </span>
+              <div className="request-date">
+                {request.created_at
+                  ? new Date(request.created_at).toLocaleDateString()
+                  : 'N/A'}
+              </div>
             </div>
-            ))}
+          ))}
         </div>
-        )}
-
+      )}
     </div>
   );
 };
 
 export default UserProfile;
-
