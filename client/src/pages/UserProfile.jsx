@@ -333,7 +333,6 @@ const UserProfile = () => {
           <h2>{selectedUser.username}</h2>
           <p><strong>Email:</strong> {selectedUser.email}</p>
           <p><strong>Rating:</strong> {selectedUser.rating ?? 'No rating yet'}</p>
-          <p><strong>Role:</strong> {selectedUser.role}</p>
         </div>
       )}
 
@@ -362,7 +361,7 @@ const UserProfile = () => {
                   <p><strong>Description:</strong> {item.description}</p>
                   <p><strong>Location:</strong> {item.location}</p>
                   <p><strong>Price:</strong> ${item.rent_price}</p>
-                  <p><strong>Available:</strong> {item.available ? 'Yes' : 'No'}</p>
+                  <p><strong>Status:</strong> {item.status}</p>
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
                   <button

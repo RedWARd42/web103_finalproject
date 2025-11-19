@@ -21,19 +21,21 @@ const initializeDatabaseTables = async () => {
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     );
 
+
     CREATE TABLE items (
       id SERIAL PRIMARY KEY,
       title VARCHAR(100) NOT NULL,
       description TEXT,
       category VARCHAR(50),
       location VARCHAR(100),
-      available BOOLEAN DEFAULT TRUE,
       post_type VARCHAR(10) CHECK (post_type IN ('lend', 'borrow')) NOT NULL,
       rent_price NUMERIC(10,2),
       image_url TEXT,
       user_id INT REFERENCES users(id) ON DELETE CASCADE,
+      status VARCHAR(20) CHECK (status IN ('available', 'pending', 'borrowed')) DEFAULT 'available',
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     );
+    
 
     CREATE TABLE requests (
       id SERIAL PRIMARY KEY,
@@ -87,14 +89,35 @@ const seedDatabaseTables = async () => {
       console.log(`✅ ${user.username} added successfully`);
     }
     
+    // for (const item of items) {
+    //   const insertQuery = {
+    //     text: `INSERT INTO items (title, description, category, location, available, post_type, rent_price, image_url, user_id, created_at) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`,
+    //     values: [item.title, item.description, item.category, item.location, item.available, item.post_type, item.rent_price, item.image_url, item.user_id, item.created_at],
+    //   };
+    //   await pool.query(insertQuery);
+    //   console.log(`✅ ${item.title} added successfully`);
+    // }
     for (const item of items) {
       const insertQuery = {
-        text: `INSERT INTO items (title, description, category, location, available, post_type, rent_price, image_url, user_id, created_at) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`,
-        values: [item.title, item.description, item.category, item.location, item.available, item.post_type, item.rent_price, item.image_url, item.user_id, item.created_at],
+        text: `INSERT INTO items (title, description, category, location, post_type, rent_price, image_url, user_id, status, created_at) 
+               VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`,
+        values: [
+          item.title,
+          item.description,
+          item.category,
+          item.location,
+          item.post_type,
+          item.rent_price,
+          item.image_url,
+          item.user_id,
+          item.status || "available", // default to "available" if not specified
+          item.created_at
+        ],
       };
       await pool.query(insertQuery);
-      console.log(`✅ ${item.title} added successfully`);
+      console.log(`✅ ${item.title} added successfully with status ${item.status || "available"}`);
     }
+    
 
     for (const request of requests) {
       const insertQuery = {
