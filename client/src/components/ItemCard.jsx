@@ -39,12 +39,14 @@ const ItemCard = ({ item, onFollowChange, refresh }) => {
         {/*  Display the fetched username with follow button */}
         <div className="owner-info">
           <span className="owner-name">Owner: @{ownerName}</span>
+          {item.user_id === 1 ? null : (
           <FollowButton
             userId={item.user_id}
             currentUserId={1}
             onChange={onFollowChange}
             refresh={refresh}
           />
+          )}
           {/* Using hardcoded current user ID for MVP */}
         </div>
 
