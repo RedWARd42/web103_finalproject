@@ -97,11 +97,11 @@ export default function App() {
             <h1 className="app-logo">BorrowBuddy</h1>
 
             <div className="header-buttons">
-                <Link to={`/user/${LOGGED_IN_USER_ID}`} className="profile-btn">
-                Profile
-                </Link>
                 <Link to="/" className="browse-btn">
                 Browse Items
+                </Link>
+                <Link to={`/user/${LOGGED_IN_USER_ID}`} className="profile-btn">
+                Profile
                 </Link>
             </div>
         </div>
