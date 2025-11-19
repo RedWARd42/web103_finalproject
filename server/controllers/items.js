@@ -1,6 +1,5 @@
 import { pool } from '../config/database.js'
 
-// Get all items with pagination and search
 const getItems = async (req, res) => {
   try {
     const { page = 1, search = '', user_id } = req.query

@@ -34,7 +34,7 @@ Complete the checklist below detailing each baseline, custom, and stretch featur
       - [x] the user can **view** items, such as tasks
       - [x] the user can **create** a new item, such as a task
       - [x] the user can **update** an existing item by changing some or all of its values, such as changing the title of task
-      - [ ] the user can **delete** an existing item, such as a task
+      - [X] the user can **delete** an existing item, such as a task
     - [x] Routes follow proper naming conventions
   - [x] The web app includes the ability to reset the database to its default state
 - [x] The project includes these frontend-specific features:
@@ -56,10 +56,10 @@ Complete the checklist below detailing each baseline, custom, and stretch featur
 - [ ] The project includes a slide-out pane or modal as appropriate for your use case that pops up and covers the page content without navigating away from the current page
 - [ ] The project includes a unique field within the join table
 - [ ] The project includes a custom non-RESTful route with corresponding controller actions
-- [ ] The user can filter or sort items based on particular criteria as appropriate for your use case
+- [X] The user can filter or sort items based on particular criteria as appropriate for your use case
 - [ ] Data is automatically generated in response to a certain event or user action. Examples include generating a default inventory for a new user starting a game or creating a starter set of tasks for a user creating a new task app account
-- [ ] Data submitted via a POST or PATCH request is validated before the database is updated (e.g. validating that an event is in the future before allowing a new event to be created)
-  - [ ] *To receive full credit, please be sure to demonstrate in your walkthrough that for certain inputs, the item will NOT be successfully created or updated.*
+- [X] Data submitted via a POST or PATCH request is validated before the database is updated (e.g. validating that an event is in the future before allowing a new event to be created)
+  - [X] *To receive full credit, please be sure to demonstrate in your walkthrough that for certain inputs, the item will NOT be successfully created or updated.*
 
 ### Stretch Features
 
