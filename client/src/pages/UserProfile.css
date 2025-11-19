@@ -224,3 +224,28 @@
     color: #666;
   }
   
+  /* Header row */
+.items-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+    margin-bottom: 10px;
+  }
+  
+  /* Add Item button */
+  .add-item-btn {
+    background: #00809D;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+  }
+  
+  .add-item-btn:hover {
+    background: #005fcc;
+  }
+  

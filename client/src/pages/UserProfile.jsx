@@ -277,7 +277,7 @@ const UserProfile = () => {
         </div>
       )}
 
-      {/* Items List */}
+      {/* Items List
       <h3>Items Lending</h3>
       {loading ? (
         <p className="loading">Loading items...</p>
@@ -298,7 +298,40 @@ const UserProfile = () => {
             </div>
           ))}
         </div>
-      )}
+      )} */}
+
+      {/* Items List Header */}
+        <div className="items-header">
+        <h3>Items Lending</h3>
+
+        <button className="add-item-btn">
+            + Add Item
+        </button>
+        </div>
+
+        {loading ? (
+        <p className="loading">Loading items...</p>
+        ) : items.length === 0 ? (
+        <p className="no-items">No items found.</p>
+        ) : (
+        <div className="items-list">
+            {items.map((item) => (
+            <div key={item.id} className="item-row">
+                <span className="item-title">{item.title}</span>
+                <span className={`item-status ${item.status.toLowerCase()}`}>
+                {item.status}
+                </span>
+                <div className="item-actions">
+                <button onClick={() => handleEdit(item)}>Edit</button>
+                <button className="delete-btn" onClick={() => handleDelete(item.id)}>
+                    Delete
+                </button>
+                </div>
+            </div>
+            ))}
+        </div>
+        )}
+
     </div>
   );
 };
