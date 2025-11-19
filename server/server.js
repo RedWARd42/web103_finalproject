@@ -35,14 +35,14 @@ const __dirname = path.dirname(__filename)
 app.use(express.json())
 
 // Favicon path
-const faviconPath = path.join(__dirname, '../client/public/lightning.png')
+// const faviconPath = path.join(__dirname, '../client/public/lightning.png')
 
-if (process.env.NODE_ENV === 'development') {
-  app.use(favicon(faviconPath))
-} else if (process.env.NODE_ENV === 'production') {
-  app.use(favicon(path.join(__dirname, 'public', 'lightning.png')))
-  app.use(express.static(path.join(__dirname, 'public')))
-}
+// if (process.env.NODE_ENV === 'development') {
+//   app.use(favicon(faviconPath))
+// } else if (process.env.NODE_ENV === 'production') {
+//   app.use(favicon(path.join(__dirname, 'public', 'lightning.png')))
+//   app.use(express.static(path.join(__dirname, 'public')))
+// }
 
 app.use('/api/items', itemsRouter)
 app.use('/api/users', usersRouter);
@@ -51,11 +51,11 @@ app.use('/api/requests', requestsRouter);
 app.use("/api", requestsRoutes);
 
 // Serve React build in production
-if (process.env.NODE_ENV === 'production') {
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'))
-  })
-}
+// if (process.env.NODE_ENV === 'production') {
+//   app.get('*', (req, res) => {
+//     res.sendFile(path.join(__dirname, 'public', 'index.html'))
+//   })
+// }
 
 app.listen(PORT, () => {
   console.log(`🚀 Server listening at http://localhost:${PORT}`)
