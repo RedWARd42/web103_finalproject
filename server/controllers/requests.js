@@ -3,7 +3,8 @@ import { pool } from '../config/database.js';
 // Get all requests for a specific item
 const getRequestsByItem = async (req, res) => {
   try {
-    const itemId = req.params.itemId;
+    // Accept either route param name: itemId (requests router) or id (items router)
+    const itemId = req.params.itemId ?? req.params.id;
     const results = await pool.query(
       `SELECT r.*, u.username as borrower_name 
        FROM requests r 
@@ -67,6 +68,8 @@ const getRequestById = async (req, res) => {
 const createRequest = async (req, res) => {
   const { item_id, borrower_id, message } = req.body;
 
+  console.log('createRequest received body:', req.body);
+
   try {
     // Check if the item exists and is available
     const itemResult = await pool.query('SELECT * FROM items WHERE id = $1', [item_id]);
@@ -98,6 +101,7 @@ const createRequest = async (req, res) => {
       `INSERT INTO requests (item_id, borrower_id, message) VALUES ($1, $2, $3) RETURNING *`,
       [item_id, borrower_id, message]
     );
+    console.log('createRequest inserted:', result.rows[0]);
     
     res.status(201).json(result.rows[0]);
   } catch (error) {

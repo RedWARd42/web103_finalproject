@@ -53,7 +53,7 @@ const ItemCard = ({ item, onFollowChange, refresh }) => {
 
       <div className="card-actions">
         <Link to={`/request/new/${item.id}`} className="request-btn">Request</Link>
-        <button>Details</button><button onClick={() => navigate(`/items/${item.id}`)} >Details</button>
+        <button onClick={() => navigate(`/items/${item.id}`)} >Details</button>
       </div>
     </div>
   );

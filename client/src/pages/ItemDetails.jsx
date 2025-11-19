@@ -14,15 +14,30 @@ function ItemDetails() {
     const LOGGED_IN_USER_ID = 1;
 
     const fetchItemDetails = async () => {
-        const res = await fetch(`/api/items/${id}`);
-        const data = await res.json();
-        setItem(data);
+        try {
+            const res = await fetch(`/api/items/${id}`);
+            if (!res.ok) throw new Error(`Failed to fetch item: ${res.status}`);
+            const data = await res.json();
+            setItem(data);
+        } catch (err) {
+            console.error('Error fetching item details:', err);
+        }
     };
 
     const fetchItemRequests = async () => {
-        const res = await fetch(`/api/items/${id}/requests`);
-        const data = await res.json();
-        setRequests(data);
+        try {
+            const res = await fetch(`/api/items/${id}/requests`);
+            if (!res.ok) {
+                console.error('Failed to fetch requests, status:', res.status);
+                setRequests([]);
+                return;
+            }
+            const data = await res.json();
+            setRequests(data || []);
+        } catch (err) {
+            console.error('Error fetching requests:', err);
+            setRequests([]);
+        }
     };
 
     useEffect(() => {
@@ -40,19 +55,33 @@ function ItemDetails() {
     };
 
     const submitNewRequest = async () => {
-        await fetch(`/api/requests`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                item_id: id,
-                borrower_id: LOGGED_IN_USER_ID,
-                message,
-            }),
-        });
+        try {
+            const res = await fetch(`/api/requests`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    item_id: id,
+                    borrower_id: LOGGED_IN_USER_ID,
+                    message,
+                }),
+            });
 
-        setMessage("");
-        setShowForm(false);
-        fetchItemRequests();
+            if (!res.ok) {
+                const text = await res.text();
+                console.error('Failed to create request:', res.status, text);
+                alert('Failed to create request: ' + (text || res.status));
+                return;
+            }
+
+            const created = await res.json();
+            console.log('Request created:', created);
+            setMessage("");
+            setShowForm(false);
+            fetchItemRequests();
+        } catch (err) {
+            console.error('Error submitting new request:', err);
+            alert('Error submitting request: ' + err.message);
+        }
     };
 
     if (!item) return <div>Loading item...</div>;
