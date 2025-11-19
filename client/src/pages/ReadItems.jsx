@@ -8,6 +8,8 @@ const ReadItems = () => {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [search, setSearch] = useState("");
+  // Used to trigger a rerender of all ItemCards when follow state changes
+  const [rerenderTrigger, setRerenderTrigger] = useState(false);
 
   useEffect(() => {
     const fetchItems = async () => {
@@ -30,6 +32,9 @@ const ReadItems = () => {
     fetchItems();
   }, [page, search]);
 
+  // Called by FollowButton in any ItemCard after a successful follow/unfollow
+  const handleFollowChange = () => setRerenderTrigger((prev) => !prev);
+
   return (
     <div className="read-items-container">
       {/* ---------- TOP BAR ---------- */}
@@ -47,7 +52,14 @@ const ReadItems = () => {
       {/* ---------- ITEMS GRID ---------- */}
       <div className="items-grid">
         {items.length > 0 ? (
-          items.map((item) => <ItemCard key={item.id} item={item} />)
+          items.map((item) => (
+            <ItemCard
+              key={`${item.id}-${rerenderTrigger ? 't1' : 't0'}`}
+              item={item}
+              onFollowChange={handleFollowChange}
+              refresh={rerenderTrigger}
+            />
+          ))
         ) : (
           <p>No items found.</p>
         )}

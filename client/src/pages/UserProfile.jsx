@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import FollowSection from '../components/FollowSection';
 import './UserProfile.css';
 
 const UserProfile = () => {
+
   const [users, setUsers] = useState([]);
   const [selectedUser, setSelectedUser] = useState(null);
   const [items, setItems] = useState([]);
@@ -89,6 +91,14 @@ const UserProfile = () => {
           <p><strong>Email:</strong> {selectedUser.email}</p>
           <p><strong>Rating:</strong> {selectedUser.rating ?? 'No rating yet'}</p>
         </div>
+      )}
+
+      {/* Follow Section */}
+      {selectedUser && (
+        <FollowSection 
+          userId={selectedUser.id} 
+          currentUserId={1} // Using the hardcoded LOGGED_IN_USER_ID from App.jsx
+        />
       )}
 
       {/* Items List Header */}

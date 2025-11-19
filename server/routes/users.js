@@ -5,5 +5,6 @@ const router = express.Router();
 
 router.get('/', UsersController.getUsers);
 router.get('/:id', UsersController.getUserById);
+router.get('/:id/profile', UsersController.getUserWithFollowing);
 
 export default router;

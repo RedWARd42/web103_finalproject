@@ -19,6 +19,7 @@ import favicon from 'serve-favicon'
 import dotenv from 'dotenv'
 import itemsRouter from './routes/items.js'
 import usersRouter from './routes/users.js';
+import followsRouter from './routes/follows.js';
 
 
 dotenv.config()
@@ -44,6 +45,7 @@ if (process.env.NODE_ENV === 'development') {
 
 app.use('/api/items', itemsRouter)
 app.use('/api/users', usersRouter);
+app.use('/api/follows', followsRouter);
 
 
 // Serve React build in production

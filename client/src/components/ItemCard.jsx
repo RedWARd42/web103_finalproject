@@ -1,48 +1,8 @@
-// import React from "react";
-// import "./ItemCard.css";
-
-// const ItemCard = ({ item }) => {
-//   return (
-//     <div className="item-card">
-//       {/* <div className="image-placeholder">
-//         {item.image_url ? (
-//           <img
-//             src={item.image_url}
-//             alt={item.title}
-//             className="item-image"
-//           />
-//         ) : (
-//           "[ IMAGE ]"
-//         )}
-//       </div> */}
-//     <div className="image-placeholder">
-//         {item.image_url ? (
-//             <img src={item.image_url} alt={item.title} />
-//         ) : (
-//             "[ IMAGE ]"
-//         )}
-//     </div>
-
-
-//       <div className="item-info">
-//         <h3>{item.title}</h3>
-//         <p>{item.location}</p>
-//       </div>
-
-//       <div className="card-actions">
-//         <button>Request</button>
-//         <button>Details</button>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default ItemCard;
-
 import React, { useEffect, useState } from "react";
+import FollowButton from "./FollowButton";
 import "./ItemCard.css";
 
-const ItemCard = ({ item }) => {
+const ItemCard = ({ item, onFollowChange, refresh }) => {
   const [ownerName, setOwnerName] = useState("Loading...");
 
   useEffect(() => {
@@ -73,8 +33,17 @@ const ItemCard = ({ item }) => {
       <div className="item-info">
         <h3>{item.title}</h3>
 
-        {/* ⭐ Display the fetched username */}
-        <p className="owner-name">@{ownerName}</p>
+        {/*  Display the fetched username with follow button */}
+        <div className="owner-info">
+          <span className="owner-name">Owner: @{ownerName}</span>
+          <FollowButton
+            userId={item.user_id}
+            currentUserId={1}
+            onChange={onFollowChange}
+            refresh={refresh}
+          />
+          {/* Using hardcoded current user ID for MVP */}
+        </div>
 
         <p>{item.location}</p>
       </div>

@@ -44,6 +44,19 @@
     color: #555;
   }
   
+  .owner-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 4px 0;
+  }
+  
+  .owner-name {
+    margin: 0;
+    color: #555;
+    font-weight: 500;
+  }
+  
   /* ------- ACTION BUTTONS ------- */
   .card-actions {
     margin-top: 14px;
