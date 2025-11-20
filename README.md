@@ -4,7 +4,7 @@ CodePath WEB103 Final Project
 
 Designed and developed by: [Julius, Malhiya, Ryan]
 
-🔗 Link to deployed app:
+🔗 Link to deployed app: https://borrowbuddy-ftp5.onrender.com/
 
 ## About
 
