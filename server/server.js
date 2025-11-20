@@ -48,10 +48,17 @@ app.use('/api/items', itemsRouter)
 app.use('/api/users', usersRouter);
 app.use('/api/follows', followsRouter);
 app.use('/api/requests', requestsRouter);
-app.use("/api", requestsRoutes);
+app.use('/api', requestsRoutes);
 
 // Serve React build in production
 if (process.env.NODE_ENV === 'production') {
+  // Serve built static assets
+  app.use(express.static(path.join(__dirname, 'public')))
+
+  // Simple health check endpoint
+  app.get('/health', (req, res) => res.send('ok'))
+
+  // SPA fallback for React Router
   app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'))
   })
